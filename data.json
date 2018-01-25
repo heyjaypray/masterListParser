@@ -1,0 +1,115 @@
+{
+  "kind": "customsearch#search",
+  "url": {
+    "type": "application/json",
+    "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&relatedSite={relatedSite?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+  },
+  "queries": {
+    "request": [
+      {
+        "title": "Google Custom Search - Avlis Cabinetry",
+        "totalResults": "302",
+        "searchTerms": "Avlis Cabinetry",
+        "count": 1,
+        "startIndex": 1,
+        "language": "lang_en",
+        "inputEncoding": "utf8",
+        "outputEncoding": "utf8",
+        "safe": "off",
+        "cx": "012215341274280442454:x3e41iv-_14",
+        "gl": "countryUS"
+      }
+    ],
+    "nextPage": [
+      {
+        "title": "Google Custom Search - Avlis Cabinetry",
+        "totalResults": "302",
+        "searchTerms": "Avlis Cabinetry",
+        "count": 1,
+        "startIndex": 2,
+        "language": "lang_en",
+        "inputEncoding": "utf8",
+        "outputEncoding": "utf8",
+        "safe": "off",
+        "cx": "012215341274280442454:x3e41iv-_14",
+        "gl": "countryUS"
+      }
+    ]
+  },
+  "context": {
+    "title": "Thinkthoughtmedia"
+  },
+  "searchInformation": {
+    "searchTime": 0.195887,
+    "formattedSearchTime": "0.20",
+    "totalResults": "302",
+    "formattedTotalResults": "302"
+  },
+  "items": [
+    {
+      "kind": "customsearch#result",
+      "title": "Robert Everett | Professional Profile",
+      "htmlTitle": "Robert Everett | Professional Profile",
+      "link": "https://www.linkedin.com/in/rsearchitect",
+      "displayLink": "www.linkedin.com",
+      "snippet": "View Robert Everett's profile on LinkedIn, the world's largest professional \ncommunity. Robert has 3 jobs listed on their profile. See the complete profile on \nLinkedIn and discover Robert's connections and jobs at similar companies.",
+      "htmlSnippet": "View Robert Everett&#39;s profile on LinkedIn, the world&#39;s largest professional <br>\ncommunity. Robert has 3 jobs listed on their profile. See the complete profile on <br>\nLinkedIn and discover Robert&#39;s connections and jobs at similar companies.",
+      "formattedUrl": "https://www.linkedin.com/in/rsearchitect",
+      "htmlFormattedUrl": "https://www.linkedin.com/in/rsearchitect",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "200",
+            "height": "200",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSaCj7YwUpRnEo-PzxH5uX2QC8aJm0C6apbjb1keVWoVBk7K_1-2AEcMX4"
+          }
+        ],
+        "metatags": [
+          {
+            "referrer": "origin",
+            "pageimpressionid": "034e8c6f-3107-4639-8d62-f99fb9b3587e",
+            "appname": "chrome",
+            "pagekey": "public_profile_v3_desktop",
+            "treeid": "kFuV5/RiBxVAJJaWaisAAA==",
+            "globaltrackingurl": "//www.linkedin.com/mob/tracking",
+            "globaltrackingappname": "chrome",
+            "globaltrackingappid": "webTracking",
+            "msapplication-tileimage": "https://static-exp2.licdn.com/scds/common/u/images/logos/linkedin/logo-in-win8-tile-144_v1.png",
+            "msapplication-tilecolor": "#0077B5",
+            "application-name": "LinkedIn",
+            "remotenavjscontentbaseurl": "https://static-exp2.licdn.com/scds/concat/common/js?v=0.1.426",
+            "lnkd-track-json-lib": "https://static-exp2.licdn.com/scds/concat/common/js?h=2jds9coeh4w78ed9wblscv68v-ebbt2vixcc5qz0otts5io08xv",
+            "apphost": "public-profile-frontend",
+            "appversion": "0.1.285",
+            "appinstance": "i001",
+            "twitter:card": "summary",
+            "twitter:site": "@LinkedIn",
+            "og:url": "https://www.linkedin.com/in/rsearchitect?trk=public_profile_card_url",
+            "og:title": "Robert Everett | Professional Profile | LinkedIn",
+            "og:description": "View Robert Everett’s professional profile on LinkedIn. LinkedIn is the world's largest business network, helping professionals like Robert Everett discover inside connections to recommended job candidates, industry experts, and business partners.",
+            "og:image": "https://static-exp2.licdn.com/scds/common/u/images/themes/katy/ghosts/person/ghost_person_200x200_v1.png",
+            "detectadblock": "//platform.linkedin.com/js/px.js"
+          }
+        ],
+        "hcard": [
+          {
+            "fn": "Robert Everett",
+            "title": "at"
+          }
+        ],
+        "person": [
+          {
+            "org": "Robert S Everett Architects & Planners",
+            "location": "Greater New York City Area",
+            "role": "at"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://static-exp2.licdn.com/scds/common/u/images/themes/katy/ghosts/person/ghost_person_200x200_v1.png"
+          }
+        ]
+      }
+    }
+  ]
+}
