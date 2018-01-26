@@ -5,13 +5,15 @@ var Scraper = require("email-crawler");
 var recursively = require('recursively');
 const emailScraper = require('./emailScraper.js');
 const googleSearch = require('./googleSearch.js');
-const output = require("./output.json")
+const output = require("./ctList.json")
 // const data2 = require("./data2.JSON")
 
 // let customers = []
 // let emailList = []
 // let websites = [];
 var a;
+
+var newArray = [];
 
 
 var Database = function(name, email, website) {
@@ -30,55 +32,36 @@ var Database = function(name, email, website) {
 
 //run through JSON file to grab Company Names and Push to Array
 
-
     
 
-    function search(){
-        for (var i=0; i< 10; i++){
-        
-        
-        googleSearch.googleSearch.build({
-            //Q is the search query built into NPM package
-            
-            q: output[i].Customer,
-            start: 1,
+function search(){
+    for (var i=0; i< 10; i++){
+
+        var name=output[i].Customer;
+        var primaryContact = output[i].primaryContact;
+
+      googleSearch.googleSearch.build({
+        q: output[i].Customer,
+        start: 1,
+  
+        gl: "countryUS",
+        lr: "lang_en",
+        num: 1, 
+      }, function(error, response) {
+        var websites = response.items[0].link
+        var company = response.items[0].title
+
+
+        var companyInfo = [company, websites, name, primaryContact]
+
+        fs.appendFile('data.csv', companyInfo.join(',') + '\n', function(err){
+          err ? console.log(err) : console.log('Content added...');
+
+        });
+      });       
     
-            gl: "countryUS",
-            lr: "lang_en",
-            num: 1, 
-            // siteSearch: response.items[0].link 
-          }, function(error, response) {
-              console.log(response.items[0].link);
-
-              var websites = response.items[0].link
-              var company = response.items[0].title
-             
-              
-              console.log("website " + websites)
-
-
-              var a = new Database(company, "emailList", websites);
-              var makeJSON = function() {
-                  fs.appendFile('data2.json',JSON.stringify(a, null, 2) + ',', function(err) {
-                      err ? console.log(err) : console.log('Content added...');
-                  });
-              }             
-              makeJSON();
-              
-        
-              
-          });
-
-
-          
-        };
     };
-
-
-
-
-
-//Google Search With Names of Companies from 'Customers' Array
+  };
 
 
 
@@ -95,33 +78,7 @@ function scrape(){
     })
 };
 
-
-//Promise so that it wont do google search until array push is done
-var startApp = new Promise (function(resolve, reject){
-    if (true) {
-        search();
-
-        console.log("stuff")
-
-        
-    } else{
-        reject("failure")
-    }
-});
-
-//Then Perform Search Function
-startApp.then(function(q){
-    console.log('searching')
-
-    
-})
-
-
-
-
-
-
-
+search();
 
 
   //Loop through JSON to get Customer Names
