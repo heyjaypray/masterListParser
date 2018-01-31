@@ -6,6 +6,7 @@ var recursively = require('recursively');
 const emailScraper = require('./emailScraper.js');
 const googleSearch = require('./googleSearch.js');
 const output = require("./ctList.json")
+// const Promise = require('promise')
 // const data2 = require("./data2.JSON")
 
 // let customers = []
@@ -32,53 +33,65 @@ var Database = function(name, email, website) {
 
 //run through JSON file to grab Company Names and Push to Array
 
+let counter = 0;
     
+const searchForSite = function(name, contactInfo, mainPhone, street1, street2, city, state, zipCode) {
+    
+
+    googleSearch.googleSearch.build({
+      q: name,
+      start: 1,
+      gl: 'countryUS',
+      lr: 'lang_en',
+      num: 2
+    }, function(error, response) {
+
+      const websites = response.items[0].link
+      const website2 = response.items[1].link
+
+      counter++
+
+      
+      const companyInfo = [name, websites, website2, contactInfo, mainPhone, street1, street2, city, state, zipCode]
+      fs.appendFile('ctCustomerList1.csv', companyInfo.join(',') + '\n', function(err){
+        err ? console.log(err) : console.log('Content added...' + counter)
+      })
+
+
+    })
+
+
+
+  };
 
 function search(){
-    for (var i=0; i< 10; i++){
-
-        var name=output[i].Customer;
-        var primaryContact = output[i].primaryContact;
-
-      googleSearch.googleSearch.build({
-        q: output[i].Customer,
-        start: 1,
-  
-        gl: "countryUS",
-        lr: "lang_en",
-        num: 1, 
-      }, function(error, response) {
-        var websites = response.items[0].link
-        var company = response.items[0].title
 
 
-        var companyInfo = [company, websites, name, primaryContact]
+  for (var i=1779; i< output.length; i++){
 
-        fs.appendFile('data.csv', companyInfo.join(',') + '\n', function(err){
-          err ? console.log(err) : console.log('Content added...');
+    var name=output[i].Customer;
+    var contactInfo = output[i].primaryContact; 
+    var mainPhone = output[i].mainPhone; 
+    var street1 = output[i].Street1; 
+    var street2 = output[i].Street2; 
+    var city = output[i].City; 
+    var state = output[i].State;
+    var zipCode = output[i].Zip;
 
-        });
-      });       
-    
-    };
+    searchForSite(name, contactInfo, mainPhone, street1, street2, city, state, zipCode, emailScraper)
+
   };
+};
+
+
+
+  search();
 
 
 
 
 //Will eventually use this function to scrap emails and add to array
-function scrape(){
-    var emailScraper = new Scraper(websites)
-    emailScraper.getLevels(2).then((emails) => {
-        console.log(emails);   
-        emails=emails;
-    })
-    .catch((e) => {
-        console.log("error");
-    })
-};
 
-search();
 
 
   //Loop through JSON to get Customer Names
