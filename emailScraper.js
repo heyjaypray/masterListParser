@@ -1,36 +1,40 @@
 var Scraper = require("email-crawler");
 const output = require("./ctList.json");
 const fs = require('fs');
+var Crawler = require("crawler");
 
 
+function crawler(website, bodyText) {
+  var c = new Crawler({
+    rateLimit: 1000,
+    maxConnections : 10,
+    // This will be called for each crawled page
+    callback : function (error, res, done) {
+        if(error){
+            console.log(error);
+        }else{
+            var $ = res.$;
+            // $ is Cheerio by default
+            //a lean implementation of core jQuery designed specifically for the server
+            console.log($("title").text());
+            bodyText = ($("body").text());
+            
+            var emails = extractEmails(bodyText)
+            console.log(emails)
+            
 
+        }
+        done();
+    }
+  });
 
-var counter = 0;
-
-const scrape = async (website) => {
-  var emailScraper = new Scraper(website);
-  console.log(website)
-
-  emailScraper
-    .getLevels(1)
-    .then((emails) => {
-      const companyInfo = [website, emails]
-      console.log('Emails', emails)
-      // fs.appendFile('newCustomerListWithEmails.csv', companyInfo.join(',') + '\n', function(err){
-      //   err ? console.log(err) : console.log('Content added...' + counter)
-      //   console.log(emails)
-      // })
-
-      counter++;
-      console.log(counter)
-    })
-
-
-    .catch((e) => {
-      console.log("error");
-    })
+  c.queue(website);
 }
 
+function extractEmails (bodyText)
+{
+  return bodyText.match(/([a-zA-Z0-9._+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+}
 
 
 
@@ -38,7 +42,7 @@ const scrape = async (website) => {
 
 function search(){
 
-  for (var i=0; i < 2; i++){
+  for (var i=0; i < 5; i++){
     // var name=output[i].Company;
     var website=output[i].Website;
     // var phone=output[i].Phone;
@@ -49,7 +53,7 @@ function search(){
     // var zip=output[i].Zip;
 
 
-    scrape(website)
+    crawler(website)
 
   };
 };
