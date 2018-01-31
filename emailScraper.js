@@ -3,8 +3,9 @@ const output = require("./ctList.json");
 const fs = require('fs');
 var Crawler = require("crawler");
 
+var counter = 0;
 
-function crawler(website, bodyText) {
+function crawler(name, website, phone, address1, address2, city, state, zip, bodyText) {
   var c = new Crawler({
     rateLimit: 1000,
     maxConnections : 10,
@@ -21,8 +22,13 @@ function crawler(website, bodyText) {
             
             var emails = extractEmails(bodyText)
             console.log(emails)
-            
 
+            const companyInfo = [name, website, emails, phone, address1, address2, city, state, zip]
+            fs.appendFile('ctCustomerListWithEmails.csv', companyInfo.join(',') + '\n', function(err){
+              err ? console.log(err) : console.log('Content added...' + counter)
+            })
+            
+            counter++
         }
         done();
     }
@@ -43,17 +49,17 @@ function extractEmails (bodyText)
 function search(){
 
   for (var i=0; i < 5; i++){
-    // var name=output[i].Company;
+    var name=output[i].Company;
     var website=output[i].Website;
-    // var phone=output[i].Phone;
-    // var address1=output[i].Address1;
-    // var address2=output[i].Address2;
-    // var city=output[i].City;
-    // var state=output[i].State;
-    // var zip=output[i].Zip;
+    var phone=output[i].Phone;
+    var address1=output[i].Address1;
+    var address2=output[i].Address2;
+    var city=output[i].City;
+    var state=output[i].State;
+    var zip=output[i].Zip;
 
 
-    crawler(website)
+    crawler(name, website, phone, address1, address2, city, state, zip)
 
   };
 };
